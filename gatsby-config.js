@@ -2,8 +2,8 @@ const postcssPresetEnv = require('postcss-preset-env')
 
 module.exports = {
   siteMetadata: {
-    title: 'Yelloecake',
-    siteUrl: 'https://yellowcake.netlify.com'
+    title: 'Company Website Sample',
+    siteUrl: 'https://company-website-sample.netlify.com'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -37,14 +37,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'yellowcake',
-        short_name: 'yellowcake',
+        name: 'Company Website Sample',
+        short_name: 'CWS',
         start_url: '/',
-        background_color: '#00C2BD',
-        theme_color: '#00C2BD',
+        background_color: '#12b3c7',
+        theme_color: '#12b3c7',
         // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
-        display: 'standalone',
+        display: 'browser',
         icon: `${__dirname}/static/images/logo.svg` // This path is relative to the root of the site.
       }
     },
@@ -118,6 +118,7 @@ module.exports = {
         showSpinner: false
       }
     },
+    'gatsby-plugin-remove-serviceworker',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-netlify-cms',

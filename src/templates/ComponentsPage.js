@@ -13,11 +13,8 @@ export const ComponentsPageTemplate = ({
   title,
   subtitle,
   featuredImage,
-  section1,
-  section2,
-  video,
-  videoPoster,
-  videoTitle,
+  movies,
+  videos,
   accordion,
   body,
   gallery
@@ -28,11 +25,11 @@ export const ComponentsPageTemplate = ({
       subtitle={subtitle}
       backgroundImage={featuredImage}
     />
-    <section className="section">
+    {/* <section className="section">
       <div className="container">
         <Content source={section1} />
       </div>
-    </section>
+    </section> */}
 
     <section className="section">
       <div className="container">
@@ -41,17 +38,29 @@ export const ComponentsPageTemplate = ({
       </div>
     </section>
 
-    <section className="section">
-      <div className="container">
-        <Content source={section2} />
-      </div>
-    </section>
+    {movies.map(movie => {
+      return (
+        <section className="section">
+          <div className="container">
+            <Content source={movie} />
+          </div>
+        </section>
+      );
+    })}
 
-    <section className="BackgroundVideo-section section">
-      <BackgroundVideo poster={videoPoster} videoTitle={videoTitle}>
-        {video && <source src={video} type="video/mp4" />}
-      </BackgroundVideo>
-    </section>
+
+    {videos.map(video => {
+      return (
+        <section className="BackgroundVideo-section section">
+          <BackgroundVideo
+            poster={video.poster}
+            videoTitle={video.title}
+          >
+            {video && <source src={video.url} type="video/mp4" />}
+          </BackgroundVideo>
+        </section>
+      );
+    })}
 
     <section className="section">
       <div className="container">
@@ -83,11 +92,12 @@ export const pageQuery = graphql`
         template
         subtitle
         featuredImage
-        section1
-        section2
-        video
-        videoPoster
-        videoTitle
+        movies
+        videos {
+          url
+          title
+          poster
+        }
         accordion {
           title
           description
